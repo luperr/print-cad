@@ -2,7 +2,7 @@
 
 Run after fish.py:  PYTHONPATH=. uv run python parts/soy_fish/make_test_band.py
 Out:  out/soy_fish_test_band.stl and one Bambu project per temperature:
-      out/soy_fish_test_band_240C.3mf, _250C.3mf, _260C.3mf
+      out/soy_fish_test_band_245C.3mf, _250C.3mf, _260C.3mf
 
 Why three files: Bambu Studio re-sends the filament temperature at every layer, so a temperature
 change inserted mid-print only lasts one layer. Each project instead carries its own temperature.
@@ -20,7 +20,7 @@ from lib import mesh_tools as mt
 from make_project import ROOT, build_project  # same folder
 
 BAND = (112.0, 127.0)            # mm, fish Z range to cut: includes the lowest row of scale edges (~118)
-TEMPS = (240, 250, 260)          # C
+TEMPS = (245, 250, 260)          # C, around the guides' 250-265 C
 
 
 def main() -> None:

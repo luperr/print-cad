@@ -40,7 +40,7 @@ download are unchanged; only the fish is new.
   Set `MARK_ON = False` for a fish without the recycling mark.
 - `make_mark.py` -> `pura_mark.npz`: the recycling mark as a 0.1 mm mask (needs matplotlib + macOS Hiragino font;
   only rerun if you change the mark).
-- `make_test_band.py` -> three short clarity-test projects at 240 / 250 / 260 C (see Print).
+- `make_test_band.py` -> three short clarity-test projects at 245 / 250 / 260 C (optional fine-tuning) (see Print).
 - `make_project.py` -> `out/soy_fish_project.3mf`: a Bambu Studio project with all print settings embedded
   (run after `fish.py`: `uv run python parts/soy_fish/make_project.py`; needs Bambu Studio installed).
 - `bambu/process_soy_fish_vase.json`, `bambu/filament_clear_petg_vase.json`: the same settings as reusable
@@ -66,16 +66,16 @@ Orientation: mouth/neck down on the bed, as exported. No supports.
 | Line width | 0.7 mm (wall + first layer) | thicker single wall, stronger and glassier |
 | Wall speed / accel | 35 mm/s / 2000 | slow + gentle for clear PETG |
 | Brim | outer only, 15 mm | the footprint is just the 37 mm neck; it's hidden in the ring, so trim marks don't show |
-| Nozzle | 240 C (245 C first layer) | cool enough to avoid bubbles at these slow speeds; go to 235 if you still see bubbles, up to 245 if layers look cloudy/unbonded |
-| Fan | 15-30%, overhang 50% | low fan keeps PETG clear and layers bonded |
-| Flow ratio | 0.98 | (Bambu PETG Translucent default 0.95); bump to ~1.0 if you see gaps between layers |
+| Nozzle | 250 C | clear-PETG guides recommend 250-265 C: hotter fuses layers into clearer plastic; much hotter risks boiling/yellowing |
+| Fan | 10-30%, overhang 40% | guides say off/low for clarity; a little is kept for the steep head and scale edges |
+| Flow ratio | 0.97 | Bambu PETG Translucent's 0.95 + 2%: slight over-extrusion closes tiny gaps (guides: +1-2%) |
 | Plate | Textured PEI, 70 C | |
 
 Checked with the Bambu Studio 2.9 command-line slicer and these presets: 1147 layers, one unbroken spiral
 (no travel moves on the visible body), ~2 h 50 min, ~45 g.
 
-Before the 3-hour print, run the **clarity test**: `PYTHONPATH=. uv run python parts/soy_fish/make_test_band.py`
-makes `out/soy_fish_test_band_240C.3mf`, `_250C.3mf` and `_260C.3mf`: a 15 mm band of the fish with a row of
+Optional fine-tuning for your spool: the **clarity test**: `PYTHONPATH=. uv run python parts/soy_fish/make_test_band.py`
+makes `out/soy_fish_test_band_245C.3mf`, `_250C.3mf` and `_260C.3mf`: a 15 mm band of the fish with a row of
 scale edges, ~20 min and ~6 g each. Hold them up to a light and keep the clearest one without bubbles, stringing
 or drooping edges. Put that temperature in `bambu/filament_clear_petg_vase.json`, then rerun `make_project.py`.
 If none is quite clear, try flow +0.02 on the best one (slight over-extrusion closes the tiny gaps between layers).
