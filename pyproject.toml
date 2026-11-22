@@ -3,6 +3,7 @@ name = "print-cad"
 version = "0.1.0"
 description = "AI-assisted CAD workspace for 3D printing (Bambu Lab P2S)"
 requires-python = ">=3.12,<3.13"
+license = "GPL-3.0-or-later"
 dependencies = [
     "bd-warehouse>=0.4.0",
     "build123d>=0.13.0",

@@ -114,8 +114,13 @@ It follows `CLAUDE.md`. It picks the editing approach and says why, renders afte
 printability, exports to `out/`, and tells you which file to drag into Bambu Studio. The CAD server
 in `.mcp.json` starts automatically; approve it the first time Claude Code asks.
 
-## Licences
+## Licence
 
-Each part's README states the licence of whatever it was remixed from. **Respect those licences.**
-For example, the soy fish comes from CC BY-NC models: share it freely with credit, but don't sell
-prints or files.
+The workspace (code, tools and original parts) is free software under the
+**GNU General Public License v3.0 or later**; see [`LICENSE`](LICENSE). You can use, change and share
+it. If you share a modified version, it must stay under the GPL with its source available.
+
+**Exception: remixed parts keep their source's licence.** `parts/soy_fish/` is derived from Soy Fish
+Lamp models licensed CC BY-NC, so that folder and everything it generates is shared under the same
+**CC BY-NC** terms: share and remix freely with credit, but **no selling** prints or files. Each part's
+README states its licence.
