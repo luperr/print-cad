@@ -40,8 +40,11 @@ download are unchanged; only the fish is new.
   Set `MARK_ON = False` for a fish without the recycling mark.
 - `make_mark.py` -> `pura_mark.npz`: the recycling mark as a 0.1 mm mask (needs matplotlib + macOS Hiragino font;
   only rerun if you change the mark).
-- `bambu/process_soy_fish_vase.json`, `bambu/filament_clear_petg_vase.json`: Bambu Studio presets
-  (File > Import > Import Configs...).
+- `make_project.py` -> `out/soy_fish_project.3mf`: a Bambu Studio project with all print settings embedded
+  (run after `fish.py`: `uv run python parts/soy_fish/make_project.py`; needs Bambu Studio installed).
+- `bambu/process_soy_fish_vase.json`, `bambu/filament_clear_petg_vase.json`: the same settings as reusable
+  presets (File > Import > Import Configs...), if you want them in your preset list.
+- `out/soy_fish.3mf` / `.stl` are plain meshes: they carry **no** settings.
 
 ## Key dimensions
 - Overall: 150.3 x 75.1 x 229.2 mm (original fish: 154 x 74 x 210, plus the new 10 mm neck and the 9.6 mm stretch).
@@ -51,6 +54,7 @@ download are unchanged; only the fish is new.
   the eye rim ~56 deg; the head flare ~50-56 deg (as in the original). Fine with 0.7 mm lines at 0.2 mm layers.
 
 ## Print (Bambu Lab P2S, 0.4 nozzle, clear PETG)
+Open **`out/soy_fish_project.3mf`** and everything below is already set; just slice and print.
 Orientation: mouth/neck down on the bed, as exported. No supports.
 
 | Setting | Value | Why |

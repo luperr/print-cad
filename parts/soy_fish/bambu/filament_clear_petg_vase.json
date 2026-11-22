@@ -35,5 +35,8 @@
     ],
     "compatible_printers": [
         "Bambu Lab P2S 0.4 nozzle"
+    ],
+    "filament_colour": [
+        "#DCEBF2"
     ]
 }
