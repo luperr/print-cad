@@ -40,6 +40,7 @@ download are unchanged; only the fish is new.
   Set `MARK_ON = False` for a fish without the recycling mark.
 - `make_mark.py` -> `pura_mark.npz`: the recycling mark as a 0.1 mm mask (needs matplotlib + macOS Hiragino font;
   only rerun if you change the mark).
+- `make_test_band.py` -> three short clarity-test projects at 240 / 250 / 260 C (see Print).
 - `make_project.py` -> `out/soy_fish_project.3mf`: a Bambu Studio project with all print settings embedded
   (run after `fish.py`: `uv run python parts/soy_fish/make_project.py`; needs Bambu Studio installed).
 - `bambu/process_soy_fish_vase.json`, `bambu/filament_clear_petg_vase.json`: the same settings as reusable
@@ -72,6 +73,21 @@ Orientation: mouth/neck down on the bed, as exported. No supports.
 
 Checked with the Bambu Studio 2.9 command-line slicer and these presets: 1147 layers, one unbroken spiral
 (no travel moves on the visible body), ~2 h 50 min, ~45 g.
+
+Before the 3-hour print, run the **clarity test**: `PYTHONPATH=. uv run python parts/soy_fish/make_test_band.py`
+makes `out/soy_fish_test_band_240C.3mf`, `_250C.3mf` and `_260C.3mf`: a 15 mm band of the fish with a row of
+scale edges, ~20 min and ~6 g each. Hold them up to a light and keep the clearest one without bubbles, stringing
+or drooping edges. Put that temperature in `bambu/filament_clear_petg_vase.json`, then rerun `make_project.py`.
+If none is quite clear, try flow +0.02 on the best one (slight over-extrusion closes the tiny gaps between layers).
+
+More clarity tips (from clear-PETG guides and lamp makers):
+- Calibrate flow for your spool first (Bambu Studio > Calibration > Flow rate), then add ~1-2% for clarity.
+- Don't go much slower than ~30 mm/s: very slow PETG can turn frosty rather than clearer.
+- Keep the P2S door closed: draughts cause uneven cooling and haze.
+- A spray or brush-on gloss clear coat fills the layer lines and is the biggest single step toward a
+  glass look. Do it outdoors; LED bulbs only.
+- Bulb: a clear filament-style LED looks great through clear PETG; a frosted/opal one hides the
+  bulb and gives an even glow. Warm white (2700 K) suits the soy-sauce look.
 
 Supports: none needed for the fish (vase mode can't print them anyway). For the cap/base, which need tree
 supports, use PLA for the support interface if you have an AMS: PLA and PETG don't bond, so supports snap off clean.

@@ -40,19 +40,22 @@ def flatten(kind: str, preset: Path) -> dict:
     return out
 
 
-def main() -> None:
-    mesh = ROOT / "out" / "soy_fish.stl"
+def build_project(mesh: Path, target: Path, filament_overrides: dict | None = None) -> None:
+    """Arrange `mesh` on a P2S plate with the soy fish presets and save a Bambu project to `target`.
+
+    `filament_overrides` replaces filament settings (e.g. nozzle temperature) for this project only.
+    """
     if not mesh.exists():
-        sys.exit("out/soy_fish.stl not found: run parts/soy_fish/fish.py first")
+        sys.exit(f"{mesh.relative_to(ROOT)} not found: run the generator first")
     for p in (BAMBU_APP, MACHINE):
         if not p.exists():
             sys.exit(f"missing {p} (is Bambu Studio installed?)")
-    target = ROOT / "out" / "soy_fish_project.3mf"
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         process = flatten("process", HERE / "bambu" / "process_soy_fish_vase.json")
         process["curr_bed_type"] = PLATE
         filament = flatten("filament", HERE / "bambu" / "filament_clear_petg_vase.json")
+        filament.update(filament_overrides or {})
         (tmp / "process.json").write_text(json.dumps(process, indent=2))
         (tmp / "filament.json").write_text(json.dumps(filament, indent=2))
         cmd = [str(BAMBU_APP), "--debug", "1", "--arrange", "1", "--orient", "0",
@@ -66,6 +69,10 @@ def main() -> None:
             sys.exit(f"Bambu Studio failed (exit {res.returncode}):\n{res.stdout[-2000:]}{res.stderr[-2000:]}")
         made.replace(target)
     print(f"wrote {target.relative_to(ROOT)}: open it in Bambu Studio and slice; settings are embedded")
+
+
+def main() -> None:
+    build_project(ROOT / "out" / "soy_fish.stl", ROOT / "out" / "soy_fish_project.3mf")
 
 
 if __name__ == "__main__":
