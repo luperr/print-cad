@@ -1,11 +1,37 @@
+# --- Build outputs (regenerate with `just build <part>`) ---
 out/*
 !out/.gitkeep
+
+# --- Python / uv ---
 .venv/
 __pycache__/
 *.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Local machine / editor ---
 .DS_Store
-# slicer project caches / backups
+.idea/
+.vscode/
+*.swp
+.~*
+
+# --- Claude Code: personal settings stay local (shared .claude/settings.json is fine) ---
+.claude/settings.local.json
+
+# --- Secrets ---
+.env
+.env.*
+*.pem
+*.key
+
+# --- Slicer caches, backups and print files ---
 *.3mf.bak
 *.gcode
 *.gcode.3mf
-.~*
+*.bgcode
+
+# --- Scratch / experiments ---
+scratch/
+*.tmp
