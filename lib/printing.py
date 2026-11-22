@@ -15,6 +15,7 @@ BED = (256.0, 256.0, 256.0)
 # --- Fits & tolerances ---------------------------------------------------------
 CLEARANCE_FIT = 0.2    # per side, for parts that slide together
 CLEARANCE_PRESS = 0.1  # per side, for press/friction fits
+CRUSH_RIB = 0.15       # per side interference for small ribs on a thin, flexible wall (they flex/crush to fit)
 HOLE_COMP = 0.2        # added to hole diameters that must fit a shaft/pin (printed holes come out small)
 
 # --- Design-for-printing limits --------------------------------------------------

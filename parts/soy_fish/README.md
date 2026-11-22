@@ -1,7 +1,7 @@
 # soy_fish: clear-PETG soy fish lamp shade (vase mode)
 
 A crisp, smooth re-creation of the fish shell from the Soy Fish Lamp, which replicates the real
-sushi soy-sauce fish. The cap, the E14 socket holder and the glued thread ring from the original
+sushi soy-sauce fish. The cap, the E14 socket holder and the thread ring from the original
 download are unchanged; only the fish is new.
 
 ## Source & licence
@@ -29,7 +29,7 @@ download are unchanged; only the fish is new.
 |---|---|---|
 | Surface | 19.5k triangles, faceted and blurry | 1.3M-triangle smooth surface, crisp details |
 | Wall | 2 mm = 2 walls + 15% infill (infill shows through clear PETG) | one continuous 0.7 mm spiral line: no infill, no seam |
-| Joint to ring | 2 mm edge butt-glued on the ring's top face | 10 mm neck slides into the ring's bore (glue lap) and seats on a shoulder |
+| Joint to ring | 2 mm edge superglued onto the ring's top face | no glue: the ring stays in the cap; the fish's 10 mm neck plugs into it (crush ribs hold it snug) and lifts off for bulb changes |
 | Tail pinch | up to 60 deg steep | stretched 9.6 mm taller so a single line can follow it |
 | Tail lobe | solid lump | same outline from the side views; thinner toward its tip so the top closes |
 | Raised edges | vertical steps | shaped to <= ~57 deg (still crisp) |
@@ -51,7 +51,8 @@ download are unchanged; only the fish is new.
 
 ## Key dimensions
 - Overall: 150.3 x 75.1 x 229.2 mm (original fish: 154 x 74 x 210, plus the new 10 mm neck and the 9.6 mm stretch).
-- Neck (goes into ring): OD 37.16 mm, 10 mm long. Ring bore measured 37.76-38.2 mm.
+- Neck (goes into ring): OD 37.16 mm, 10 mm long, with 6 crush ribs to 37.86 mm. Ring bore measured 37.76-38.2 mm
+  (printed holes come out ~0.2 mm small, so the ribs press ~0.15 mm in; interference is `CRUSH_RIB` in `lib/printing.py`).
 - Clear opening through the neck: ~35.8 mm, so the **bulb must be <= 35 mm across** (E14 C35 candle / small globe).
 - Steepest wall: 58.6 deg on a small patch of the belly fin tab where it meets the tail stem; scale edges and
   the eye rim ~56 deg; the head flare ~50-56 deg (as in the original). Fine with 0.7 mm lines at 0.2 mm layers.
@@ -99,10 +100,14 @@ If the filament isn't Bambu PETG Translucent, base the filament preset on Generi
 temperature/fan/flow changes.
 
 ## Assembly
-1. Screw the original ring into the cap and check it runs freely, then unscrew it.
-2. Dry-fit the fish neck into the ring: the shoulder should sit on the ring's top edge.
-3. Glue with 5-minute epoxy or gel superglue around the neck (fills the ~0.3 mm gap). Keep glue off the
-   ring's threads.
-4. Fit the E14 socket holder and bulb to the cap as in the original, then gently screw the fish on.
+No glue needed.
+1. Fit the E14 socket holder and bulb to the cap as in the original.
+2. Screw the original thread ring all the way into the cap and leave it there.
+3. Lower the fish over the bulb and push its neck into the ring until the shoulder sits on the ring's top
+   edge. The ribs on the neck hold it snug and stop it spinning. Lift it straight off to change the bulb.
+
+Fit check: if the neck is too tight, sand the rib tops lightly; if it is loose, wrap one layer of tape around
+the neck (it is hidden in the ring). To change the fit for a reprint, adjust `CRUSH_RIB` in `lib/printing.py`.
+If you ever do glue it, use epoxy, **not superglue**: superglue fumes leave a white haze on clear plastic.
 
 **LED bulbs only** (<= ~5 W). PETG softens around 75-80 C; an incandescent bulb will warp the shell.

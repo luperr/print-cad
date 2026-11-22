@@ -11,7 +11,7 @@ measured from that mesh (see README.md) and are given in the ORIGINAL's coordina
 at the mouth, +105 at the tail tip); `oz()` converts them to this model's Z.
 
 Changes from the original, all for vase-mode printing:
-  * a 10 mm neck below the mouth slides into the thread ring (glue lap) instead of a butt joint;
+  * a 10 mm neck below the mouth plugs into the thread ring (crush ribs, no glue) instead of a glued butt joint;
   * the 25 mm pinch into the tail stem is stretched by 6 mm (it was up to 60 deg steep);
   * the tail lobe gets thinner toward its tip (side view only) so the top can close;
   * raised edges are shaped to <= ~55 deg instead of vertical, so a single line can follow them.
@@ -33,15 +33,22 @@ import trimesh
 from scipy.interpolate import PchipInterpolator
 from scipy.ndimage import gaussian_filter, gaussian_filter1d, map_coordinates
 
-from lib.printing import CLEARANCE_FIT, HOLE_COMP, check_bed
+from lib.printing import CLEARANCE_FIT, CRUSH_RIB, HOLE_COMP, check_bed
 
 HERE = Path(__file__).resolve().parent
 
-# --- Interface with the original glued thread ring ("Screw" in the download) -------------
+# --- Interface with the original thread ring ("Screw" in the download) --------------------
+# The ring stays screwed into the cap; the fish plugs into it (no glue) and can be lifted off.
 RING_BORE_MIN = 37.76        # mm, narrowest measured bore of the thread ring (r 18.88-19.11)
-# Neck radius that slides into the ring: fit clearance, plus half the usual printed-hole
-# shrink because the ring's bore is itself a printed hole. Leaves a ~0.3 mm glue gap per side.
+# Neck radius: fit clearance, plus half the usual printed-hole shrink because the ring's bore
+# is itself a printed hole. Leaves ~0.3 mm per side, taken up by the crush ribs below.
 SPIGOT_R = RING_BORE_MIN / 2 - CLEARANCE_FIT - HOLE_COMP / 2
+# Vertical crush ribs on the neck: press lightly into the (printed, slightly small) bore so the
+# fish sits snug and can't spin. The thin vase wall flexes, so the fit tolerates print variation.
+RIB_R = RING_BORE_MIN / 2 - HOLE_COMP / 2 + CRUSH_RIB   # mm, radius over the rib tops
+RIB_COUNT = 6
+RIB_W = 2.5                  # mm, rib width
+RIB_LEAD_IN = 2.5            # mm, ribs ramp up from the bottom so the neck starts easily
 SPIGOT_DEPTH = 10.0          # mm, neck length inside the ring; the fish body starts here
 VASE_LINE_W = 0.70           # mm, slicer line width this is designed for (reporting only)
 
@@ -308,6 +315,12 @@ def build() -> trimesh.Trimesh:
     nn = np.hypot(nx, ny)
     D = displacement(P, Xb, Yb, Zg, _mark_sampler())
     D[z <= SPIGOT_DEPTH + 1.0] = 0.0
+    # crush ribs on the neck (the neck is round, so t is the angle around it)
+    pitch = 2 * np.pi / RIB_COUNT
+    off = np.abs(((T - pitch / 2) % pitch) - pitch / 2) * SPIGOT_R      # mm from the nearest rib centre
+    rib = (1 - smoothstep(RIB_W / 2 - 0.6, RIB_W / 2, off)) * (RIB_R - SPIGOT_R)
+    rib *= smoothstep(0.0, RIB_LEAD_IN, Zg) * (1 - smoothstep(SPIGOT_DEPTH, SPIGOT_DEPTH + 0.5, Zg))
+    D = D + rib
     px, py = Xb + D * nx / nn, Yb + D * ny / nn
 
     nz, nt = T.shape
