@@ -65,13 +65,16 @@ Orientation: mouth/neck down on the bed, as exported. No supports.
 | Line width | 0.7 mm (wall + first layer) | thicker single wall, stronger and glassier |
 | Wall speed / accel | 35 mm/s / 2000 | slow + gentle for clear PETG |
 | Brim | outer only, 15 mm | the footprint is just the 37 mm neck; it's hidden in the ring, so trim marks don't show |
-| Nozzle | 250 C | hotter = better layer fusion = clearer |
+| Nozzle | 240 C (245 C first layer) | cool enough to avoid bubbles at these slow speeds; go to 235 if you still see bubbles, up to 245 if layers look cloudy/unbonded |
 | Fan | 15-30%, overhang 50% | low fan keeps PETG clear and layers bonded |
 | Flow ratio | 0.98 | (Bambu PETG Translucent default 0.95); bump to ~1.0 if you see gaps between layers |
 | Plate | Textured PEI, 70 C | |
 
 Checked with the Bambu Studio 2.9 command-line slicer and these presets: 1147 layers, one unbroken spiral
 (no travel moves on the visible body), ~2 h 50 min, ~45 g.
+
+Supports: none needed for the fish (vase mode can't print them anyway). For the cap/base, which need tree
+supports, use PLA for the support interface if you have an AMS: PLA and PETG don't bond, so supports snap off clean.
 
 Clarity tips: dry the PETG first (65 C, 4-6 h; wet PETG prints cloudy and stringy). Clean the plate.
 If the filament isn't Bambu PETG Translucent, base the filament preset on Generic PETG and keep the
