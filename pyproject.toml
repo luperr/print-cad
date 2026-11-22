@@ -1,0 +1,18 @@
+[project]
+name = "print-cad"
+version = "0.1.0"
+description = "AI-assisted CAD workspace for 3D printing (Bambu Lab P2S)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "bd-warehouse>=0.4.0",
+    "build123d>=0.13.0",
+    "lxml>=6.1.3",
+    "manifold3d>=3.5.5",
+    "networkx>=3.7",
+    "numpy>=2.5.5",
+    "ocp-vscode>=4.3.0",
+    "trimesh>=5.2.1",
+]
+
+[tool.uv]
+package = false

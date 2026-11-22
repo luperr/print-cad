@@ -1,0 +1,11 @@
+out/*
+!out/.gitkeep
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# slicer project caches / backups
+*.3mf.bak
+*.gcode
+*.gcode.3mf
+.~*
