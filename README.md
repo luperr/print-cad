@@ -5,16 +5,6 @@ A small workspace for designing and remixing 3D-printable parts with code, built
 [Claude Code](https://claude.com/claude-code): you describe what you want in plain language and it
 models, measures, renders and exports the part. Every script here also runs on its own.
 
-## What's in it
-
-| Part | What it is | Start here |
-|---|---|---|
-| [`parts/soy_fish`](parts/soy_fish/README.md) | A clear-PETG lamp shade shaped like a sushi soy-sauce fish, printed in one continuous spiral (vase mode). Remix of the Soy Fish Lamp (CC BY-NC). | open `out/soy_fish_project.3mf` after `just soy-fish` |
-| [`parts/_example`](parts/_example/README.md) | A 60 x 40 mm plate with four M3 holes: the template every new part is copied from. | `just build _example` |
-
-Each part has its own README with its source and licence, key dimensions, print settings and
-assembly notes. This page covers the workspace as a whole.
-
 ## Requirements
 
 - **macOS** (tested on macOS 26 / Apple Silicon). Linux should work for everything except the Bambu
