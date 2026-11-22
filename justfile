@@ -31,3 +31,8 @@ test:
 # Empty out/
 clean:
     find out -mindepth 1 ! -name .gitkeep -delete
+
+# Soy fish lamp: regenerate the fish and its Bambu Studio project (needs Bambu Studio installed)
+soy-fish:
+    uv run python parts/soy_fish/fish.py
+    uv run python parts/soy_fish/make_project.py

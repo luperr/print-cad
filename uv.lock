@@ -628,6 +628,7 @@ dependencies = [
     { name = "networkx" },
     { name = "numpy" },
     { name = "ocp-vscode" },
+    { name = "scipy" },
     { name = "trimesh" },
 ]
 
@@ -640,6 +641,7 @@ requires-dist = [
     { name = "networkx", specifier = ">=3.7" },
     { name = "numpy", specifier = ">=2.5.5" },
     { name = "ocp-vscode", specifier = ">=4.3.0" },
+    { name = "scipy", specifier = ">=1.18" },
     { name = "trimesh", specifier = ">=5.2.1" },
 ]
 
