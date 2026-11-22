@@ -58,7 +58,8 @@ download are unchanged; only the fish is new.
   the eye rim ~56 deg; the head flare ~50-56 deg (as in the original). Fine with 0.7 mm lines at 0.2 mm layers.
 
 ## Print (Bambu Lab P2S, 0.4 nozzle, clear PETG)
-Open **`out/soy_fish_project.3mf`** and everything below is already set; just slice and print.
+Open **`out/soy_fish_project.3mf`** (clear PETG) or **`out/soy_fish_project_pla.3mf`** (opaque PLA); everything
+below is already set, so just slice and print.
 Orientation: mouth/neck down on the bed, as exported. No supports.
 
 | Setting | Value | Why |
@@ -68,7 +69,8 @@ Orientation: mouth/neck down on the bed, as exported. No supports.
 | Layer height | 0.2 mm | keeps the crisp scale / eye / fin edges printable as a single wall |
 | Line width | 0.7 mm (wall + first layer) | thicker single wall, stronger and glassier |
 | Wall speed / accel | 35 mm/s / 2000 | slow + gentle for clear PETG |
-| Brim | outer only, 15 mm | the footprint is just the 37 mm neck; it's hidden in the ring, so trim marks don't show |
+| Brim | outer only, 15 mm, 0.1 mm gap | steadies the tall print; the gap lets it snap off without unravelling the first spiral turn |
+| Fan, first 25 layers | off | the hidden neck (bottom 5 mm) fuses hotter and stronger |
 | Nozzle | 250 C | clear-PETG guides recommend 250-265 C: hotter fuses layers into clearer plastic; much hotter risks boiling/yellowing |
 | Fan | 10-30%, overhang 40% | guides say off/low for clarity; a little is kept for the steep head and scale edges |
 | Flow ratio | 0.97 | Bambu PETG Translucent's 0.95 + 2%: slight over-extrusion closes tiny gaps (guides: +1-2%) |
@@ -91,6 +93,14 @@ More clarity tips (from clear-PETG guides and lamp makers):
   glass look. Do it outdoors; LED bulbs only.
 - Bulb: a clear filament-style LED looks great through clear PETG; a frosted/opal one hides the
   bulb and gives an even glow. Warm white (2700 K) suits the soy-sauce look.
+
+Removing it: let the plate cool, flex it, then **snip the brim off with flush cutters** rather than peeling it
+(peeling a brim fused to a single wall unravels the spiral from the bottom). If the neck's bottom edge frays,
+trim the loose strand: the shoulder, not the neck length, sets how the fish sits in the ring.
+
+**PLA version** (`soy_fish_project_pla.3mf`, 220 C, ~2 h 20 min): opaque light colours (white, natural, pastel)
+glow evenly and hide the bulb; dark colours block the light. PLA softens around 55-60 C and the bulb sits close
+to the neck, so use a 4-5 W LED and check after the first hour that the shell near the mouth is only warm.
 
 Supports: none needed for the fish (vase mode can't print them anyway). For the cap/base, which need tree
 supports, use PLA for the support interface if you have an AMS: PLA and PETG don't bond, so supports snap off clean.

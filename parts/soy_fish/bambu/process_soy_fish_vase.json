@@ -41,7 +41,7 @@
     ],
     "brim_type": "outer_only",
     "brim_width": "15",
-    "brim_object_gap": "0",
+    "brim_object_gap": "0.1",
     "compatible_printers": [
         "Bambu Lab P2S 0.4 nozzle"
     ]
