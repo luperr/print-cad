@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from build123d import Shape, export_step
+from build123d import Compound, Shape, export_step
 
 from lib import mesh_tools as mt
 from lib.printing import check_bed
@@ -28,7 +28,12 @@ def export_part(part: Shape, name: str, tolerance: float = 0.001,
     mesh = mt.from_build123d(part, tolerance=tolerance, angular_tolerance=angular_tolerance)
     mesh.export(paths["stl"])
     mesh.export(paths["3mf"])
-    export_step(part, paths["step"])
+    try:
+        export_step(part, paths["step"])
+    except RuntimeError:
+        # Some boolean results wrap their solid in a way the STEP writer rejects; the solids export fine.
+        solids = part.solids()
+        export_step(solids[0] if len(solids) == 1 else Compound(solids), paths["step"])
 
     bb = part.bounding_box()
     size = (bb.size.X, bb.size.Y, bb.size.Z)
